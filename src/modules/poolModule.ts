@@ -364,7 +364,7 @@ export class PoolModule implements IModule {
    * @param {CreatePoolParams | CreatePoolAddLiquidityParams} params
    * @returns {Promise<Transaction>}
    */
-  async creatPoolTransactionPayload(params: CreatePoolAddLiquidityParams): Promise<Transaction> {
+  async createPoolTransactionPayload(params: CreatePoolAddLiquidityParams): Promise<Transaction> {
     if (isSortedSymbols(normalizeSuiAddress(params.coinTypeA), normalizeSuiAddress(params.coinTypeB))) {
       const swpaCoinTypeB = params.coinTypeB
       params.coinTypeB = params.coinTypeA

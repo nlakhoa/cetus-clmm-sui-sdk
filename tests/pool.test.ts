@@ -37,9 +37,9 @@ describe('Pool Module', () => {
     const coin_a_decimals = 6
     const coin_b_decimals = 6
     const coin_type_a = `${sdk.sdkOptions.faucet?.package_id}::usdt::USDT`
-    const coin_type_b = `{sdk.sdkOptions.faucet?.package_id}::usdc::USDC`
+    const coin_type_b = `${sdk.sdkOptions.faucet?.package_id}::usdc::USDC`
 
-    const creatPoolTransactionPayload = await sdk.Pool.creatPoolsTransactionPayload([
+    const createPoolTransactionPayload = await sdk.Pool.creatPoolsTransactionPayload([
       {
         tick_spacing: tick_spacing,
         initialize_sqrt_price: TickMath.priceToSqrtPriceX64(d(initialize_price), coin_a_decimals, coin_b_decimals).toString(),
@@ -49,8 +49,8 @@ describe('Pool Module', () => {
       },
     ])
 
-    printTransaction(creatPoolTransactionPayload)
-    const transferTxn = await sdk.fullClient.sendTransaction(buildTestAccount(), creatPoolTransactionPayload)
+    printTransaction(createPoolTransactionPayload)
+    const transferTxn = await sdk.fullClient.sendTransaction(buildTestAccount(), createPoolTransactionPayload)
     console.log('doCreatPool: ', transferTxn)
   })
 
@@ -84,7 +84,7 @@ describe('Pool Module', () => {
 
   //   console.log('amount: ', { amount_a, amount_b })
 
-  //   const creatPoolTransactionPayload = await sdk.Pool.creatPoolTransactionPayload({
+  //   const createPoolTransactionPayload = await sdk.Pool.createPoolTransactionPayload({
   //     tick_spacing: tick_spacing,
   //     initialize_sqrt_price: initialize_sqrt_price,
   //     uri: '',
@@ -98,7 +98,7 @@ describe('Pool Module', () => {
   //     tick_upper: upperTick,
   //   })
 
-  //   const transferTxn = await sdk.fullClient.sendTransaction(buildTestAccount(), creatPoolTransactionPayload)
+  //   const transferTxn = await sdk.fullClient.sendTransaction(buildTestAccount(), createPoolTransactionPayload)
   //   console.log('doCreatPool: ', transferTxn)
   // })
 
@@ -147,10 +147,10 @@ describe('Pool Module', () => {
     console.log('🚀🚀🚀 ~ file: pool.test.ts:145 ~ test ~ p:', p)
   })
 
-  test('creatPoolTransactionPayload', async () => {
+  test('createPoolTransactionPayload', async () => {
     sdk.senderAddress = buildTestAccount().getPublicKey().toSuiAddress()
 
-    const payload = await sdk.Pool.creatPoolTransactionPayload({
+    const payload = await sdk.Pool.createPoolTransactionPayload({
       tick_spacing: 200,
       initialize_sqrt_price: '184467440737095516',
       uri: '',
